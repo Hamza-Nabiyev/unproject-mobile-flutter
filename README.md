@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # news_aggregator
+=======
+# unporject_mobile_flutter
+>>>>>>> c25986e40b5eae5f489af64b0b329046e3b4315a
 
 A new Flutter project.
 
