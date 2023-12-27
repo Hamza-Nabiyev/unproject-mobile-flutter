@@ -4,7 +4,7 @@ import 'package:news_aggregator/styles/styles.dart';
 
 class NewsCard extends StatelessWidget {
   final News news;
-  final Function onTap;
+  final void Function() onTap;
 
   const NewsCard(this.news, {super.key, required this.onTap});
 
@@ -15,7 +15,7 @@ class NewsCard extends StatelessWidget {
       clipBehavior: Clip.hardEdge,
       borderRadius: BorderRadius.circular(20),
       child: InkWell(
-        onTap: () {},
+        onTap: onTap,
         child: Padding(
           padding: const EdgeInsets.all(15),
           child: SizedBox(

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:news_aggregator/pages/main_page/main_page.dart';
+import 'package:news_aggregator/pages/main_page/news_card.dart';
 import 'package:news_aggregator/styles/styles.dart';
 
 class SingleNewsPage extends StatelessWidget {
@@ -6,17 +8,80 @@ class SingleNewsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
+    return SafeArea(
       child: Scaffold(
         body: CustomScrollView(
           slivers: [
             SliverAppBar(
-              title: Text("Новость"),
+              title: Column(
+                children: [
+                  Text(
+                    "РИА новости",
+                    style: Theme.of(context)
+                        .textTheme
+                        .labelMedium
+                        ?.copyWith(color: Theme.of(context).primaryColor),
+                  ),
+                ],
+              ),
+              actions: [
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.bookmark_border_rounded),
+                ),
+              ],
             ),
-            SliverToBoxAdapter(
-              child: Text(
-                "aenean patrioque deterruisset lacus purus congue consectetur  aenean patrioque deterruisset lacus purus congue consectetur  aenean patriaenean patrioque deterruisset lacus purus congue consectetur  v aenean patrioque deterruisset lacus purus congue consectetur  aenean patrioque deterruisset lacus purus congue consectetur  aenean patrioque deterruisset lacus purus congue consectetur  aenean patrioque deterruisset lacus purus congue consectetur  aenean patrioque deterruisset lacus purus congue consectetur  aenean patrioque deterruisset lacus purus congue consectetur oque deterruisset lacus purus congue consectetur aenean patrioque deterruisset lacus purus congue consectetur omittantur etiam luctus torquent recteque atomorum indoctum splendide mus menandri quidam semper errem similique velit fastidii purus quo mnesarchum ornare tacimates dolor usu voluptaria tritani saepe volumus repudiandae iuvaret option neque penatibus sanctus vivamus iisque veritus posidonium signiferumque convenire libris neque possim facilisi harum neque te novum noster menandri movet laoreet recteque maximus nascetur facilisis meliore lacus maiestatis deserunt expetenda vitae harum contentiones mucius pretium ferri facilisis tale aliquip aliquip eius docendi assueverit urna eruditi interpretaris tritani veri docendi tibique pri patrioque sapien movet gubergren utamur nostrum phasellus fastidii scripta signiferumque justo ferri felis verterem posidonium nulla semper instructior sale ea agam suas felis mentitum antiopam feugiat graecis pri antiopam autem amet felis viverra parturient massa ius reprimique ultricies accumsan delectus mea montes putent periculis inimicus sea solet tellus verear mazim meliore eros tamquam adhuc graeci qui magnis affert nullam persius postea nobis ei molestie utamur error prompta quam tempus maximus luptatum electram delectus delicata class his habitant porro mazim qui regione eius dicam patrioque ante graeco consectetur euismod vix commune ipsum patrioque honestatis novum fastidii prompta pellentesque ocurreret ex salutatus malesuada aliquet labores oporteat pellentesque eros wisi elementum porttitor arcu iisque eruditi",
-              textAlign: TextAlign.justify,
+            SliverPadding(
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+              sliver: SliverToBoxAdapter(
+                child: Text(
+                  "GPT-5 “заказала” своих создателей",
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleLarge
+                      ?.copyWith(fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+            const SliverPadding(
+              padding: EdgeInsets.symmetric(horizontal: 15),
+              sliver: SliverToBoxAdapter(
+                child: Text(
+                  '''
+                    В своём стремлении улучшить опыт мы упускаем, что предприниматели в сети интернет, вне зависимости от их уровня, должны быть объединены в целые кластеры себе подобных. Однозначно, независимые государства могут быть смешаны с нейтральными.
+                    Есть над чем задуматься: предприниматели в сети интернет могут быть описаны максимально подробно. В целом, конечно, консультация с.
+                    В целом, конечно, базовый вектор развития создаёт необходимость включения в производственный план целого ряда внеочередных мероприятий с учётом комплекса стандартных подходов. Таким образом, разбавленное изрядной долей эмпатии, рациональное мышление позволяет.
+                  ''',
+                  textAlign: TextAlign.justify,
+                ),
+              ),
+            ),
+            SliverPadding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              sliver: SliverToBoxAdapter(
+                child: ListView.builder(
+                  itemCount: newsList.length,
+                  itemBuilder: (context, index) {
+                    final news = newsList[index];
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      child: SizedBox(
+                        width: 200,
+                        height: 200,
+                        child: NewsCard(
+                          news,
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => const SingleNewsPage(),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    );
+                  },
+                ),
               ),
             ),
           ],
